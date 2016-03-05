@@ -7,4 +7,18 @@
     <route id="galmi_xacml_pap_homepage" path="/">
         <default key="_controller">GalmiXacmlPAPBundle:Default:index</default>
     </route>
+    <route id="galmi_xacml_pap_rules_list" path="/rules" methods="GET">
+        <default key="_controller">GalmiXacmlPAPBundle:Rules:getRules</default>
+    </route>
+    <route id="galmi_xacml_pap_rules_post" path="/rules" methods="POST">
+        <default key="_controller">GalmiXacmlPAPBundle:Rules:postRule</default>
+    </route>
+    <route id="galmi_xacml_pap_rules_get" path="/rules/{id}" methods="GET">
+        <default key="_controller">GalmiXacmlPAPBundle:Rules:getRule</default>
+        <requirement key="id">\d+</requirement>
+    </route>
+    <route id="galmi_xacml_pap_rules_put" path="/rules/{id}" methods="PUT">
+        <default key="_controller">GalmiXacmlPAPBundle:Rules:putRule</default>
+        <requirement key="id">\d+</requirement>
+    </route>
 </routes>
