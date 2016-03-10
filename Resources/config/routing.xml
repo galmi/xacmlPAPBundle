@@ -21,4 +21,19 @@
         <default key="_controller">GalmiXacmlPAPBundle:Rules:putRule</default>
         <requirement key="id">\d+</requirement>
     </route>
+
+    <route id="galmi_xacml_pap_policies_list" path="/policies" methods="GET">
+        <default key="_controller">GalmiXacmlPAPBundle:Policies:getPolicies</default>
+    </route>
+    <route id="galmi_xacml_pap_policies_post" path="/policies" methods="POST">
+        <default key="_controller">GalmiXacmlPAPBundle:Policies:postPolicy</default>
+    </route>
+    <route id="galmi_xacml_pap_policies_get" path="/policies/{id}" methods="GET">
+        <default key="_controller">GalmiXacmlPAPBundle:Policies:getPolicy</default>
+        <requirement key="id">\d+</requirement>
+    </route>
+    <route id="galmi_xacml_pap_policies_put" path="/policies/{id}" methods="PUT">
+        <default key="_controller">GalmiXacmlPAPBundle:Policies:putPolicy</default>
+        <requirement key="id">\d+</requirement>
+    </route>
 </routes>
