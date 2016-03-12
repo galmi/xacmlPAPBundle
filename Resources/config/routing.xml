@@ -7,6 +7,12 @@
     <route id="galmi_xacml_pap_homepage" path="/">
         <default key="_controller">GalmiXacmlPAPBundle:Default:index</default>
     </route>
+    <route id="galmi_xacml_pap_attributes" path="/attributes">
+        <default key="_controller">GalmiXacmlPAPBundle:Default:attributes</default>
+    </route>
+    <route id="galmi_xacml_pap_combining_algorithms" path="/combiningAlgorithms">
+        <default key="_controller">GalmiXacmlPAPBundle:Default:combiningAlgorithms</default>
+    </route>
     <route id="galmi_xacml_pap_rules_list" path="/rules" methods="GET">
         <default key="_controller">GalmiXacmlPAPBundle:Rules:getRules</default>
     </route>

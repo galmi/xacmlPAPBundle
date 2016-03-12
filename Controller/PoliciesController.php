@@ -63,6 +63,7 @@ class PoliciesController extends Controller
     {
         if ($validationErrors->count() == 0) {
             $policy->setId($request->get('id'));
+            $this->getDoctrine()->getManager()->refresh($originalPolicy);
             $this->getDoctrine()->getManager()->merge($policy);
             $this->getDoctrine()->getManager()->flush();
             return new Response($this->get('serializer')->serialize(['policy' => $policy], 'json'));
