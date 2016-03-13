@@ -46,6 +46,21 @@ class DefaultController extends Controller
                 'description' => $id
             ];
         }
+
         return new Response($this->get('serializer')->serialize(['combiningAlgorithms' => $data], 'json'));
+    }
+
+    public function functionEqualitiesAction()
+    {
+        $functions = $this->get('galmi_xacml_func_registry')->getEqualityFunctions();
+        $data = [];
+        foreach ($functions as $function) {
+            $data[] = [
+                'id' => $function,
+                'name' => $function
+            ];
+        }
+
+        return new Response($this->get('serializer')->serialize(['functionEqualities' => $data], 'json'));
     }
 }

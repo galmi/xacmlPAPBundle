@@ -13,6 +13,9 @@
     <route id="galmi_xacml_pap_combining_algorithms" path="/combiningAlgorithms">
         <default key="_controller">GalmiXacmlPAPBundle:Default:combiningAlgorithms</default>
     </route>
+    <route id="galmi_xacml_pap_function_equalities" path="/functionEqualities">
+        <default key="_controller">GalmiXacmlPAPBundle:Default:functionEqualities</default>
+    </route>
     <route id="galmi_xacml_pap_rules_list" path="/rules" methods="GET">
         <default key="_controller">GalmiXacmlPAPBundle:Rules:getRules</default>
     </route>
