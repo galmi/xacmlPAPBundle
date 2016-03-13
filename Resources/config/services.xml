@@ -19,5 +19,29 @@
             <argument type="service" id="validator"/>
             <tag name="request.param_converter" priority="-2" converter="galmi_xacml_post_converter"/>
         </service>
+
+        <service id="galmi_xacml.normalizer" class="Galmi\XacmlPAPBundle\Serializer\Normalizer\XacmlNormalizer">
+            <tag name="serializer.normalizer"/>
+            <argument type="service" id="serializer.mapping.class_metadata_factory"/>
+            <argument type="service" id="serializer.name_converter.camel_case_to_snake_case"/>
+            <argument type="service" id="property_accessor"/>
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+        </service>
+        <service id="galmi_xacml.policy.normalizer" class="Galmi\XacmlPAPBundle\Serializer\Normalizer\PolicyNormalizer">
+            <tag name="serializer.normalizer"/>
+        </service>
+        <service id="galmi_xacml.match.normalizer" class="Galmi\XacmlPAPBundle\Serializer\Normalizer\MatchNormalizer">
+            <tag name="serializer.normalizer"/>
+        </service>
+        <service id="galmi_xacml.expression.apply.normalizer" class="Galmi\XacmlPAPBundle\Serializer\Normalizer\Expression\ApplyNormalizer">
+            <tag name="serializer.normalizer"/>
+        </service>
+        <service id="galmi_xacml.expression.attribute_designator.normalizer" class="Galmi\XacmlPAPBundle\Serializer\Normalizer\Expression\AttributeDesignatorNormalizer">
+            <tag name="serializer.normalizer"/>
+        </service>
+        <service id="galmi_xacml.expression.attribute_value.normalizer" class="Galmi\XacmlPAPBundle\Serializer\Normalizer\Expression\AttributeValueNormalizer">
+            <tag name="serializer.normalizer"/>
+        </service>
+
     </services>
 </container>
