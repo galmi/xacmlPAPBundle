@@ -2,6 +2,7 @@
 
 namespace Galmi\XacmlPAPBundle\Controller;
 
+use Doctrine\ORM\Mapping\ClassMetadata;
 use Galmi\Xacml\CombiningAlgorithmRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,23 +16,30 @@ class DefaultController extends Controller
 
     public function attributesAction()
     {
-        $attributes = [
-            [
-                'id' => 'Action',
-                'name' => 'Action',
-                'gorup' => 'Action'
-            ],
-            [
-                'id' => 'Environment',
-                'name' => 'Environment',
-                'group' => 'Environment'
-            ],
-            [
-                'id' => 'Resource',
-                'name' => 'Resource',
-                'group' => 'Resource'
-            ]
-        ];
+        $attributes = [];
+
+        /** @var ClassMetadata[] $allMetadata */
+        $allMetadata = $this->getDoctrine()->getManager()->getMetadataFactory()->getAllMetadata();
+        foreach ($allMetadata as $metadata) {
+            $namespaceName = explode('\\', $metadata->getName());
+            $className = end($namespaceName);
+            foreach ($metadata->getFieldNames() as $field) {
+                $attributes[] = [
+                    'id' => $className.'.'.$field,
+                    'name' => $className.'.'.$field,
+                    'group' => $className,
+                ];
+            }
+            foreach($metadata->getAssociationMappings() as $association) {
+                if ($association['type'] == ClassMetadata::ONE_TO_ONE || $association['type'] == ClassMetadata::MANY_TO_ONE) {
+                    $attributes[] = [
+                        'id' => $className.'.'.$association['fieldName'],
+                        'name' => $className.'.'.$association['fieldName'],
+                        'group' => $className,
+                    ];
+                }
+            }
+        }
 
         return new Response($this->get('serializer')->serialize(['attributes' => $attributes], 'json'));
     }
